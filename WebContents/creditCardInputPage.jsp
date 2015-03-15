@@ -47,7 +47,7 @@ String url = "https://" + serverName + ":" + sPort + "/eBay/confirmationPage.jsp
         </tr>
         <tr>
             <td>Enter Credit Card Number:</td>
-            <form method = "POST" action="payment"><td><input type="text" name="cardNumber" id="cardNumber"></td>
+            <form method = "POST" action="https://<%= request.getServerName() %>:8443<%= request.getContextPath() %>/payment"><td><input type="text" name="cardNumber" id="cardNumber"></td>
         </tr>
       </table>
 
