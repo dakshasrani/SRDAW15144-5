@@ -35,9 +35,6 @@ String url = "https://" + serverName + ":" + sPort + "/eBay/confirmationPage.jsp
   <div id = "body">
     <h2 align = "center">Item Purchase</h2>
     <div id="creditCardNo" align="center">
-      <p>Server Name : <%= serverName %></p>
-      <p>Server Port : <%= serverPort %></p>
-      <p>URL : <%= url %></p>
       <table class="creditCardInput" border="0">
         <tr>
             <td><b>Item ID:</td> <td><%= itemId%></td>
@@ -50,7 +47,7 @@ String url = "https://" + serverName + ":" + sPort + "/eBay/confirmationPage.jsp
         </tr>
         <tr>
             <td>Enter Credit Card Number:</td>
-            <form method = "POST" action="/eBay/payment"><td><input type="text" name="cardNumber" id="cardNumber"></td>
+            <form method = "POST" action="payment"><td><input type="text" name="cardNumber" id="cardNumber"></td>
         </tr>
       </table>
 
@@ -59,7 +56,8 @@ String url = "https://" + serverName + ":" + sPort + "/eBay/confirmationPage.jsp
     </div>
   </div>
   <script>
-  function validateCardNumber(cardNumber) {
+  function validateCardNumber() {
+    var cardNumber = document.getElementById("cardNumber");
     // Strip spaces and dashes
     cardNumber = cardNumber.replace(/[ -]/g, '');
     // See if the card is valid

@@ -9,18 +9,19 @@ import java.io.PrintWriter;
 import java.util.Date;
 
 public class PaymentServlet extends HttpServlet implements Servlet {
-    
+
     public PaymentServlet() {}
-    
+
     public void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         HttpSession session = request.getSession(true);
-        
+
         boolean error = false;
         int itemId = (Integer)session.getAttribute("itemId");
         String itemName = (String)session.getAttribute("itemName");
         Float buyPrice = (Float)session.getAttribute("buyPrice");
-        
+        Date d = new Date(session.getCreationTime());
+
         if(itemId==0)
             error = true;
         else
@@ -29,20 +30,22 @@ public class PaymentServlet extends HttpServlet implements Servlet {
             request.setAttribute("itemId", itemId);
             request.setAttribute("itemName", itemName);
             request.setAttribute("buyPrice", buyPrice);
+            request.setAttribute("cardNumber",cardNumber);
+            request.setAttribute("time",d);
             request.setAttribute("serverName", request.getServerName());
             request.setAttribute("serverPort", request.getServerPort());
             session.removeAttribute("itemId");
             session.removeAttribute("itemName");
             session.removeAttribute("buyPrice");
         }
-        
+
         if(error)
-            request.getRequestDispatcher("/error.html").forward(request, response);
+            request.getRequestDispatcher("error.html").forward(request, response);
         else
-            getServletContext().getRequestDispatcher("https://localhost:8443/eBay/confirmationPage.jsp").forward(request, response);
-        
+            request.getRequestDispatcher("confirmationPage.jsp").forward(request, response);
+
     }
-    
+
     public void doPost(HttpServletRequest request,
                        HttpServletResponse response)
     throws ServletException, IOException {

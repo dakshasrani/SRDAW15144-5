@@ -5,7 +5,8 @@
 int itemId = (Integer)request.getAttribute("itemId");
 String itemName = (String)request.getAttribute("itemName");
 Float buyPrice = (Float)request.getAttribute("buyPrice");
-String cardNumber= (String)request.getParameter("cardNumber");
+String cardNumber= (String)request.getAttribute("cardNumber");
+Date d = (Date)request.getAttribute("time");
 
 %>
 <html>
@@ -13,7 +14,6 @@ String cardNumber= (String)request.getParameter("cardNumber");
   <link rel="stylesheet" href="css/main.css" type="text/css" />
   </head>
   <body>
-    <h2 align="center">Item Purchase Confirmation</h2>
     <div id="nav">
     <p class="title"><a href="/eBay/index.html">eBay</a></p>
     <ul id="navigation">
@@ -22,6 +22,7 @@ String cardNumber= (String)request.getParameter("cardNumber");
     </ul>
   </div>
   <div id = "body">
+    <h2 align="center">Item Purchase Confirmation</h2>
     <div id="creditCardNo" align="center">
       <table class="creditCardInput" border="0">
         <tr>
@@ -37,7 +38,7 @@ String cardNumber= (String)request.getParameter("cardNumber");
             <td>Credit Card Number:</td> <td><%= cardNumber %></td>
         </tr>
         <tr>
-            <td>Transaction Time:</td> <td><% new Date(session.getCreationTime()); %></td>
+            <td>Transaction Time:</td> <td><%= d.toString() %></td>
         </tr>
       </table>
     </div>
