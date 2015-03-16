@@ -50,9 +50,21 @@ li
 {
  	color:#BDBDBD;
 }
+input.payNow
+{
+	font-size: 80%
+}
 input
 {
 	font-size: 100%
+}
+table.creditCardConfirm, table.creditCardConfirm td, table.creditCardConfirm th, table.creditCardConfirm tr
+{
+	border: none;
+}
+table.creditCardInput, table.creditCardInput td, table.creditCardInput th, table.creditCardInput tr
+{
+	border: none;
 }
 table.pageNo
 {
@@ -63,7 +75,7 @@ table.results
 {
 	padding:10px;
 	margin-left:auto;
-    margin-right:auto;
+  margin-right:auto;
 }
 
 tr.columnHead

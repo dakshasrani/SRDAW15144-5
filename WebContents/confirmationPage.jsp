@@ -24,7 +24,7 @@ Date d = (Date)request.getAttribute("time");
   <div id = "body">
     <h2 align="center">Item Purchase Confirmation</h2>
     <div id="creditCardNo" align="center">
-      <table class="creditCardInput" border="0">
+      <table class="creditCardConfirm">
         <tr>
             <td><b>Item ID:</td> <td><%= itemId%></td>
         </tr>
@@ -32,13 +32,13 @@ Date d = (Date)request.getAttribute("time");
             <td><b>Item Name:</td> <td><%= itemName%></td>
         </tr>
         <tr>
-            <td><h4>Buy Price:</td> <td><%= buyPrice%></td>
+            <td><b>Buy Price:</td> <td><%= buyPrice%></td>
         </tr>
         <tr>
-            <td>Credit Card Number:</td> <td><%= cardNumber %></td>
+            <td><b>Credit Card Number:</td> <td><%= cardNumber %></td>
         </tr>
         <tr>
-            <td>Transaction Time:</td> <td><%= d.toString() %></td>
+            <td><b>Transaction Time:</td> <td><%= d.toString() %></td>
         </tr>
       </table>
     </div>

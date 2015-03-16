@@ -26,7 +26,7 @@ Float buyPrice = (Float)session.getAttribute("buyPrice");
     alert("Please enter a Credit Card Number.");
     return false;
    }
-    
+
   else {
     var reg = /^[0-9-\s]*$/;
     if (!reg.test(cardNumber)) {
@@ -34,7 +34,6 @@ Float buyPrice = (Float)session.getAttribute("buyPrice");
      alert("Invalid Card Number. Please re-enter a valid Credit Card Number.");
      return false;
    }
-
   }
  }
 
@@ -52,18 +51,21 @@ Float buyPrice = (Float)session.getAttribute("buyPrice");
     <h2 align = "center">Item Purchase</h2>
     <div id="creditCardNo" align="center">
       <form method = "POST" action="https://<%= request.getServerName() %>:8443<%= request.getContextPath() %>/payment">
-      <table class="creditCardInput" border="0">
+      <table class="creditCardInput">
         <tr>
             <td><b>Item ID:</td> <td><%= itemId%></td>
         </tr>
+
         <tr>
             <td><b>Item Name:</td> <td><%= itemName%></td>
         </tr>
+
         <tr>
-            <td><h4>Buy Price:</td> <td><%= buyPrice%></td>
+            <td><b>Buy Price:</td> <td><%= buyPrice%></td>
         </tr>
+
         <tr>
-            <td>Enter Credit Card Number:</td>
+            <td><b>Enter Credit Card Number:</td>
             <td><input type="text" name="cardNumber" id="cardNumber"></td>
         </tr>
       </table>

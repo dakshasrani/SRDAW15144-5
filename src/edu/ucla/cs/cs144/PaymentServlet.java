@@ -19,13 +19,16 @@ public class PaymentServlet extends HttpServlet implements Servlet {
 
         if(!request.isSecure())
             error = true;
-        
+
+        if(session.getAttribute("itemId")==null)
+            error = true;
+
         else {
             int itemId = (Integer)session.getAttribute("itemId");
             String itemName = (String)session.getAttribute("itemName");
             Float buyPrice = (Float)session.getAttribute("buyPrice");
             Date d = new Date(session.getCreationTime());
-            
+
             if(itemId==0)
                 error = true;
             else
@@ -42,9 +45,9 @@ public class PaymentServlet extends HttpServlet implements Servlet {
             }
 
         }
-        
+
         if(error)
-            request.getRequestDispatcher("error.html").forward(request, response);
+            request.getRequestDispatcher("error.jsp").forward(request, response);
         else
             request.getRequestDispatcher("confirmationPage.jsp").forward(request, response);
 

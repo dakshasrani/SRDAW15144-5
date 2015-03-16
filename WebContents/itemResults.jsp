@@ -125,13 +125,12 @@
         Currently : <%= item.getCurrently() %><br/>
         First Bid : <%= item.getFirstBid() %><br/>
         Total Bids: <%= item.getNoOfBids() %><br/>
+        <form action="/eBay/session">
         <% if(item.getBuyPrice()!=0.0) { %>
           Buy Price : <%= item.getBuyPrice() %>
           <% session.setAttribute("buyPrice", item.getBuyPrice()); %>
-          <form action="/eBay/session">
-            <input type="Submit" value="Pay Now">
-          </form>
-          <br/>
+            &nbsp;&nbsp;<input class ="payNow" type="Submit" value="Pay Now">
+        </form>
         <% } %>
         Started : <%= item.getStarted() %><br/>
         Ends : <%= item.getEnds() %><br/>
