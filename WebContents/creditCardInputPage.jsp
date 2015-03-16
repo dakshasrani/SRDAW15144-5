@@ -2,27 +2,75 @@
 <%@ page import="java.util.*"%>
 
 <%
-
-
 int itemId = (Integer)session.getAttribute("itemId");
 String itemName = (String)session.getAttribute("itemName");
 Float buyPrice = (Float)session.getAttribute("buyPrice");
-
-session.setAttribute("itemId", itemId);
-session.setAttribute("itemName",itemName);
-session.setAttribute("buyPrice",buyPrice);
-
-String serverName = (String)request.getAttribute("serverName");
-int serverPort = (Integer)request.getAttribute("serverPort");
-
-String sPort = "" + serverPort;
-
-String url = "https://" + serverName + ":" + sPort + "/eBay/confirmationPage.jsp";
 %>
 
 <html>
   <head><title>Credit Card Details</title>
   <link rel="stylesheet" href="css/main.css" type="text/css" />
+
+  <script type="text/javascript">
+
+ /*function test(){
+   var cardNumber = document.getElementById('cardNumber').value;
+   alert(cardNumber + "Test");
+ } */
+
+ /*function valid_credit_card() {
+   alert("Entered JS function");
+   var cardNumber = document.getElementById("cardNumber").value;
+   // accept only digits, dashes or spaces
+   if (/[^0-9-\s]+/.test(cardNumber))
+     {
+       alert("Invalid Card Number");
+       return false;
+     }
+
+   // The Luhn Algorithm
+   var nCheck = 0, nDigit = 0, bEven = false;
+   cardNumber = cardNumber.replace(/\D/g, "");
+
+   for (var n = cardNumber.length() - 1; n >= 0; n--) {
+     var cDigit = cardNumber.charAt(n),
+       nDigit = parseInt(cDigit, 10);
+
+       if (bEven) {
+         if ((nDigit *= 2) > 9) nDigit -= 9;
+       }
+
+       nCheck += nDigit;
+       bEven = !bEven;
+     }
+
+     var check =  (nCheck % 10) == 0;
+
+     if(!check)
+     {
+       alert("Invalid Card Number!");
+       return false;
+     }
+
+     return true;
+   } */
+
+ function validateCardNumber() {
+   alert("Entered JS function");
+   var cardNumber = document.getElementById('cardNumber').value;
+   // Strip spaces and dashes
+   cardNumber = cardNumber.replace(/[ -]/g, '');
+   // See if the card is valid
+   // The regex will capture the number in one of the capturing groups
+   var match = /^(?:(4[0-9]{12}(?:[0-9]{3})?)|(5[1-5][0-9]{14})|(6(?:011|5[0-9]{2})[0-9]{12})|(3[47][0-9]{13})|(3(?:0[0-5]|[68][0-9])↵
+   [0-9]{11})|((?:2131|1800|35[0-9]{3})[0-9]{11}))$/.exec(cardnumber);
+   if (!match) {
+     document.getElementById('cardNumber') = '';
+     alert("Invalid Card Number. Please re-enter a valid Credit Card Number.");
+   }
+ }
+
+  </script>
   </head>
   <body>
     <div id="nav">
@@ -52,23 +100,8 @@ String url = "https://" + serverName + ":" + sPort + "/eBay/confirmationPage.jsp
       </table>
 
       <br />
-        <input type="submit" value="Submit"></form>
+        <input type="submit" value="Submit" onClick = "validateCardNumber()"></form>
     </div>
   </div>
-  <script>
-  function validateCardNumber() {
-    var cardNumber = document.getElementById("cardNumber");
-    // Strip spaces and dashes
-    cardNumber = cardNumber.replace(/[ -]/g, '');
-    // See if the card is valid
-    // The regex will capture the number in one of the capturing groups
-    var match = /^(?:(4[0-9]{12}(?:[0-9]{3})?)|(5[1-5][0-9]{14})|(6(?:011|5[0-9]{2})[0-9]{12})|(3[47][0-9]{13})|(3(?:0[0-5]|[68][0-9])↵
-    [0-9]{11})|((?:2131|1800|35[0-9]{3})[0-9]{11}))$/.exec(cardnumber);
-    if (!match) {
-      document.getElementById("cardNumber").value = "";
-      document.alert("Invalid Card Number");
-    }
-  }
-  </script>
   </body>
 </html>

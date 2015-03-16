@@ -32,8 +32,6 @@ public class PaymentServlet extends HttpServlet implements Servlet {
             request.setAttribute("buyPrice", buyPrice);
             request.setAttribute("cardNumber",cardNumber);
             request.setAttribute("time",d);
-            request.setAttribute("serverName", request.getServerName());
-            request.setAttribute("serverPort", request.getServerPort());
             session.removeAttribute("itemId");
             session.removeAttribute("itemName");
             session.removeAttribute("buyPrice");
