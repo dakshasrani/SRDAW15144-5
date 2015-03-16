@@ -15,28 +15,34 @@ public class PaymentServlet extends HttpServlet implements Servlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         HttpSession session = request.getSession(true);
-
         boolean error = false;
-        int itemId = (Integer)session.getAttribute("itemId");
-        String itemName = (String)session.getAttribute("itemName");
-        Float buyPrice = (Float)session.getAttribute("buyPrice");
-        Date d = new Date(session.getCreationTime());
 
-        if(itemId==0)
+        if(!request.isSecure())
             error = true;
-        else
-        {
-            String cardNumber = (String)request.getParameter("cardNumber");
-            request.setAttribute("itemId", itemId);
-            request.setAttribute("itemName", itemName);
-            request.setAttribute("buyPrice", buyPrice);
-            request.setAttribute("cardNumber",cardNumber);
-            request.setAttribute("time",d);
-            session.removeAttribute("itemId");
-            session.removeAttribute("itemName");
-            session.removeAttribute("buyPrice");
-        }
+        
+        else {
+            int itemId = (Integer)session.getAttribute("itemId");
+            String itemName = (String)session.getAttribute("itemName");
+            Float buyPrice = (Float)session.getAttribute("buyPrice");
+            Date d = new Date(session.getCreationTime());
+            
+            if(itemId==0)
+                error = true;
+            else
+            {
+                String cardNumber = (String)request.getParameter("cardNumber");
+                request.setAttribute("itemId", itemId);
+                request.setAttribute("itemName", itemName);
+                request.setAttribute("buyPrice", buyPrice);
+                request.setAttribute("cardNumber",cardNumber);
+                request.setAttribute("time",d);
+                session.removeAttribute("itemId");
+                session.removeAttribute("itemName");
+                session.removeAttribute("buyPrice");
+            }
 
+        }
+        
         if(error)
             request.getRequestDispatcher("error.html").forward(request, response);
         else

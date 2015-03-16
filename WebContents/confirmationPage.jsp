@@ -15,10 +15,10 @@ Date d = (Date)request.getAttribute("time");
   </head>
   <body>
     <div id="nav">
-    <p class="title"><a href="/eBay/index.html">eBay</a></p>
+    <p class="title"><a href="http://<%= request.getServerName() %>:1448<%= request.getContextPath() %>/index.html">eBay</a></p>
     <ul id="navigation">
-      <li><a href="/eBay/keywordSearch.html">Keyword Search</a></li>
-      <li><a href="/eBay/getItem.html">Item Search</a></li>
+      <li><a href="http://<%= request.getServerName() %>:1448<%= request.getContextPath() %>/keywordSearch.html">Keyword Search</a></li>
+      <li><a href="http://<%= request.getServerName() %>:1448<%= request.getContextPath() %>/getItem.html">Item Search</a></li>
     </ul>
   </div>
   <div id = "body">
